@@ -140,7 +140,7 @@ else:
     col2.metric(
         label = "Days since starting level",
         value = None if not value else f'{value} days',
-        delta = None if not delta else f'{delta:.1f} days vs. level {level_stats["level"] - 1:.1f}',
+        delta = None if not delta else f'{delta:.1f} days vs. level {level_stats["level"] - 1}',
         delta_color = level_stats["delta_color"]
     )
 
