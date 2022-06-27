@@ -1,0 +1,6 @@
+jupyter
+jupyterlab
+pandas
+plotly
+requests
+streamlit
