@@ -3,7 +3,6 @@ import wanikani_helpers
 
 st.set_page_config(
     page_title = "Wanikani Statistics"
-    # layout = "wide"
 )
 
 st.title("Wanikani Statistics")

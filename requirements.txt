@@ -1,6 +1,8 @@
 jupyter
 jupyterlab
+numpy
 pandas
 plotly
+pytz
 requests
 streamlit

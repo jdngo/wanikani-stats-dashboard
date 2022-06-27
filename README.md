@@ -10,7 +10,7 @@ The -v flag is used to mount a local directory to a directory on the container. 
 ```
 export mount_dir=/Users/jongo/wanikani-stats-dashboard/project_files
 
-docker run -d --rm -t -i --name wanikani-stats-dashboard -v $mount_dir:/src/project_files -p 8888:8888 -p 7777:7777wanikani-stats-dashboard:latest
+docker run -d --rm -t -i --name wanikani-stats-dashboard -v $mount_dir:/src/project_files -p 8888:8888 -p 7777:7777 wanikani-stats-dashboard:latest
 ```
 
 ## Access Jupyter Lab
