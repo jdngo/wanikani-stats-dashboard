@@ -1,4 +1,4 @@
-from helpers import get_current_timestamp, parse_timestamp, seconds_to_days
+import helpers as hp
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -22,12 +22,12 @@ def check_wanikani_api_key(api_key, wanikani_revision = "20170710", timezone = "
     if response.get("code") == 401:
         return None
     else:
-        started_datetime = parse_timestamp(response["data"]["started_at"])
+        started_datetime = hp.parse_timestamp(response["data"]["started_at"])
         
         return {
             "username": response["data"]["username"],
             "started_date": started_datetime.strftime("%B %d, %Y"),
-            "elapsed_time": (get_current_timestamp() - started_datetime).days
+            "elapsed_time": (hp.get_current_timestamp() - started_datetime).days
         }
 
 @st.cache
@@ -142,14 +142,14 @@ def get_levels(api_key, timezone = "America/Los_Angeles"):
         l = i["data"]["level"]
         
         levels[l] = {
-            "started_datetime": parse_timestamp(i["data"]["started_at"]),
-            "passed_datetime": parse_timestamp(i["data"]["passed_at"])
+            "started_datetime": hp.parse_timestamp(i["data"]["started_at"]),
+            "passed_datetime": hp.parse_timestamp(i["data"]["passed_at"])
         }
         
         if (levels[l]["started_datetime"] is not None) and (levels[l]["passed_datetime"] is not None):
             levels[l]["elapsed_time"] = levels[l]["passed_datetime"] - levels[l]["started_datetime"]
         elif levels[l]["started_datetime"] is not None:
-            levels[l]["elapsed_time"] = get_current_timestamp() - levels[l]["started_datetime"]
+            levels[l]["elapsed_time"] = hp.get_current_timestamp() - levels[l]["started_datetime"]
         else:
             levels[l]["elapsed_time"] = None
 
@@ -159,7 +159,7 @@ def get_level_up_stats(levels):
     """
     Insert docstring here...
     """
-    times = [seconds_to_days(levels[key]["elapsed_time"].total_seconds()) for key in levels.keys() if levels[key]["elapsed_time"] is not None]
+    times = [hp.seconds_to_days(levels[key]["elapsed_time"].total_seconds()) for key in levels.keys() if levels[key]["elapsed_time"] is not None]
     
     if len(times) == 0:
         return {
@@ -185,7 +185,7 @@ def plot_level_up_times(levels):
     Insert docstring here...
     """
     x = sorted([key for key in levels.keys() if levels[key]["elapsed_time"] is not None])
-    y = [round(seconds_to_days(levels[l]["elapsed_time"].total_seconds()), 1) for l in x]
+    y = [round(hp.seconds_to_days(levels[l]["elapsed_time"].total_seconds()), 1) for l in x]
         
     fig = px.bar(
         data_frame = pd.DataFrame({
@@ -213,11 +213,11 @@ def get_level_stats(l, levels):
     time_on_level = levels[l]["elapsed_time"]
     
     if time_on_level is not None:
-        time_on_level = round(seconds_to_days(time_on_level.total_seconds()), 1)
+        time_on_level = round(hp.seconds_to_days(time_on_level.total_seconds()), 1)
     
     if l > 1:
         previous_level = l - 1
-        time_on_previous_level = round(seconds_to_days(levels[previous_level]["elapsed_time"].total_seconds()), 1)
+        time_on_previous_level = round(hp.seconds_to_days(levels[previous_level]["elapsed_time"].total_seconds()), 1)
         time_difference = time_on_level - time_on_previous_level if time_on_level is not None else None
     else:
         previous_level = None

@@ -2,7 +2,6 @@ import app_helpers as ah
 import pandas as pd
 import streamlit as st
 import wanikani_helpers as wh
-import helpers
 
 st.set_page_config(page_title = "Wanikani Statistics")
 
