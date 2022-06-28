@@ -44,7 +44,7 @@ def display_items_learned(api_key):
     for col, item in zip(st.columns(3), items):
         col.metric(
             label = labels[item],
-            value = sum([counts[i][item] for i in range(5,10)])
+            value = sum([counts[stage][item] for stage in range(5,10)])
         )
 
     # Inject CSS with Markdown to hide table index
