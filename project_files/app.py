@@ -94,7 +94,7 @@ def main():
         )
 
         level_stats = wh.get_level_stats(
-            l = selected_level,
+            selected_level = selected_level,
             levels = levels
         )
 

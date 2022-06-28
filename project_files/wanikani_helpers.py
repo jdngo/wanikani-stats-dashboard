@@ -206,17 +206,17 @@ def plot_level_up_times(levels):
     
     return fig
 
-def get_level_stats(l, levels):
+def get_level_stats(selected_level, levels):
     """
     Insert docstring here...
     """
-    time_on_level = levels[l]["elapsed_time"]
+    time_on_level = levels[selected_level]["elapsed_time"]
     
     if time_on_level is not None:
         time_on_level = round(hp.seconds_to_days(time_on_level.total_seconds()), 1)
     
-    if l > 1:
-        previous_level = l - 1
+    if selected_level > 1:
+        previous_level = selected_level - 1
         time_on_previous_level = round(hp.seconds_to_days(levels[previous_level]["elapsed_time"].total_seconds()), 1)
         time_difference = time_on_level - time_on_previous_level if time_on_level is not None else None
     else:
@@ -225,7 +225,7 @@ def get_level_stats(l, levels):
         time_difference = None
     
     return {
-        "level": l,
+        "level": selected_level,
         "time_on_level": time_on_level,
         "previous_level": previous_level,
         "time_on_previous_level": time_on_previous_level,
