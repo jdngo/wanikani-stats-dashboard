@@ -1,6 +1,6 @@
-import app_helpers as ah
 import pandas as pd
 import streamlit as st
+import streamlit_helpers as sh
 import wanikani_helpers as wh
 
 st.set_page_config(page_title = "Wanikani Statistics")
@@ -9,9 +9,9 @@ st.title("Wanikani Statistics")
 
 def main():
     # Get Wanikani API Key from user
-    api_key = ah.get_api_key_from_user()
+    api_key = sh.get_api_key_from_user()
 
-    ah.insert_page_break()
+    sh.insert_page_break()
 
     # Validate the API key; returns user data if valid or None if invalid
     user_data = wh.check_wanikani_api_key(api_key)
@@ -19,13 +19,13 @@ def main():
     if not user_data:
         st.markdown("<font color='red'>Hm... Did you enter a valid token?</font>", unsafe_allow_html = True)
     else:
-        ah.display_welcome_message(user_data)
+        sh.display_welcome_message(user_data)
 
-        ah.insert_page_break()
+        sh.insert_page_break()
         
-        ah.display_items_learned(api_key)
+        sh.display_items_learned(api_key)
 
-        ah.insert_page_break()
+        sh.insert_page_break()
         
         
         
@@ -114,7 +114,7 @@ def main():
             delta_color = level_stats["delta_color"]
         )
 
-    ah.insert_page_break()
+    sh.insert_page_break()
 
     st.markdown("[Github](https://github.com/jdngo/wanikani-stats-dashboard)")
     
