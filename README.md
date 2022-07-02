@@ -17,9 +17,3 @@ docker run -d --rm -t -i --name wanikani-stats-dashboard -v $mount_dir:/src/proj
 ```
 http://localhost:8888
 ```
-
-Small combination platter
-crispy tofu salt and chili peppers
-bean curd rolls
-walnut prawns
-house special fried rice

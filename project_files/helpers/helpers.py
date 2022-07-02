@@ -7,7 +7,6 @@ def get_current_timestamp(timezone = "America/Los_Angeles"):
     """
     return datetime.now(tz = pytz.timezone(timezone))
 
-
 def parse_timestamp(timestamp, timezone = "America/Los_Angeles"):
     """
     Insert docstring here...
